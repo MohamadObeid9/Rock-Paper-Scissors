@@ -9,5 +9,14 @@ function  getComputerChoice() {
     else if (Randomnum==1)return "paper";
     else return "scissors";
 }
-let compchoice = getComputerChoice();
-console.log(getComputerChoice());
+let computerchoice = getComputerChoice();
+console.log(computerchoice);
+// create a function called getHumanChoice
+// ask the user for input using prompt
+// the answer must be either rock , paper , scissors
+// else ask the user to reenter the answer
+function getHumanChoice(){
+    let humanchoice = prompt("enter your choice :","rock or paper or scissor");
+}
+let humanchoice = getHumanChoice();
+console.log(humanchoice);
