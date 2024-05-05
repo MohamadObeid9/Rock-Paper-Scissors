@@ -73,22 +73,31 @@ function playRound(humanChoice, computerChoice) {
 // you have to repeat the playround function 5 times
 // you have to keep the score 
 // and finally annouce the winner
-function playGame(){
-    for (let i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-        console.log("humanscore: " + humanScore);
-        console.log("computerscore: " + computerScore);    
-    }
-    if(humanScore>computerScore){
-        alert("you win!!");
-    }
-    else if(humanScore === computerScore){
-        alert("Draw");
-    }
-    else{
-        alert("the computer win");
-    }
-}
-playGame();
+// function playGame(){
+//     for (let i = 0; i < 5; i++) {
+//         const humanSelection = getHumanChoice();
+//         const computerSelection = getComputerChoice();
+//         playRound(humanSelection, computerSelection);
+//         console.log("humanscore: " + humanScore);
+//         console.log("computerscore: " + computerScore);    
+//     }
+//     if(humanScore>computerScore){
+//         alert("you win!!");
+//     }
+//     else if(humanScore === computerScore){
+//         alert("Draw");
+//     }
+//     else{
+//         alert("the computer win");
+//     }
+// }
+// playGame();
+const btnRock       = document.createElement("button").setAttribute("rock");
+const btnPaper      = document.createElement("button").setAttribute("paper");
+const btnScissor    = document.createElement("button").setAttribute("scissor");
+const rock          = document.querySelector("#rock");
+const paper         = document.querySelector("#paper");
+const scissor       = document.querySelector("#scissor");
+rock.textContent    = "Rock";
+paper.textContent   = "Paper";
+scissor.textContent = "Scissor";
