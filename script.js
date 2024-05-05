@@ -92,12 +92,16 @@ function playRound(humanChoice, computerChoice) {
 //     }
 // }
 // playGame();
-const btnRock       = document.createElement("button").setAttribute("rock");
-const btnPaper      = document.createElement("button").setAttribute("paper");
-const btnScissor    = document.createElement("button").setAttribute("scissor");
-const rock          = document.querySelector("#rock");
-const paper         = document.querySelector("#paper");
-const scissor       = document.querySelector("#scissor");
+const contDiv = document.createElement("div").setAttribute("container");
+const container = document.querySelector("#container");
+
+const rock       = document.createElement("button").setAttribute("rock");
 rock.textContent    = "Rock";
+const paper      = document.createElement("button").setAttribute("paper");
 paper.textContent   = "Paper";
+const scissor    = document.createElement("button").setAttribute("scissor");
 scissor.textContent = "Scissor";
+
+container.appendChild(rock);
+container.appendChild(paper);
+container.appendChild(scissor);
