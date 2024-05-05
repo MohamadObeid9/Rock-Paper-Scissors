@@ -7,7 +7,7 @@ function  getComputerChoice() {
     let Randomnum = Math.floor(Math.random()*3);
     if (Randomnum==0) return "rock";
     else if (Randomnum==1)return "paper";
-    else return "scissors";
+    else return "scissor";
 }
 // create a function called getHumanChoice
 // ask the user for input using prompt
@@ -92,16 +92,32 @@ function playRound(humanChoice, computerChoice) {
 //     }
 // }
 // playGame();
-const contDiv = document.createElement("div").setAttribute("container");
-const container = document.querySelector("#container");
+const contDiv       = document.createElement("div").setAttribute("container");
+const container     = document.querySelector("#container");
 
-const rock       = document.createElement("button").setAttribute("rock");
+const rock          = document.createElement("button").setAttribute("rock");
 rock.textContent    = "Rock";
-const paper      = document.createElement("button").setAttribute("paper");
+const paper         = document.createElement("button").setAttribute("paper");
 paper.textContent   = "Paper";
-const scissor    = document.createElement("button").setAttribute("scissor");
+const scissor       = document.createElement("button").setAttribute("scissor");
 scissor.textContent = "Scissor";
 
 container.appendChild(rock);
 container.appendChild(paper);
 container.appendChild(scissor);
+
+container.addEventListener("click",(event) => {
+    const target = event.target;
+
+    switch(target.id){
+        case "rock":
+            event = playRound("rock",getComputerChoice);
+            break;
+        case "paper":
+            event = playRound("paper",getComputerChoice);
+            break;
+        case "scissor":
+            event = playRound("scissor",getComputerChoice);
+            break;
+    }
+})
