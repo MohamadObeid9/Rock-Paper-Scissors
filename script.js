@@ -4,7 +4,7 @@
 // if the number is 2 return paper 
 // if the nunber is 3 return scissors 
 function  getComputerChoice() {
-    let Randomnum = Math.floor(Math.random()*3);
+    const Randomnum = Math.floor(Math.random()*3);
     if (Randomnum==0) return "rock";
     else if (Randomnum==1)return "paper";
     else return "scissor";
@@ -13,7 +13,7 @@ function  getComputerChoice() {
 // ask the user for input using prompt
 // the answer must be either rock , paper , scissors
 function getHumanChoice(){
-    let humanchoice = prompt("enter your choice :","rock or paper or scissor");
+    const humanchoice = prompt("enter your choice :","rock or paper or scissor");
     return humanchoice
 }
 let humanScore     = 0 ;
@@ -26,7 +26,7 @@ let computerScore  = 0 ;
 // according to that announce the winner
 function playRound(humanChoice, computerChoice) {
     humanChoice = humanChoice.toLowerCase();
-    if(humanChoice == "rock"){
+    if(humanChoice === "rock"){
         if(computerChoice === "scissor") {
             humanScore++;
          alert("you win , rock beat scissor");
@@ -73,51 +73,49 @@ function playRound(humanChoice, computerChoice) {
 // you have to repeat the playround function 5 times
 // you have to keep the score 
 // and finally annouce the winner
-// function playGame(){
-//     for (let i = 0; i < 5; i++) {
-//         const humanSelection = getHumanChoice();
-//         const computerSelection = getComputerChoice();
-//         playRound(humanSelection, computerSelection);
-//         console.log("humanscore: " + humanScore);
-//         console.log("computerscore: " + computerScore);    
-//     }
-//     if(humanScore>computerScore){
-//         alert("you win!!");
-//     }
-//     else if(humanScore === computerScore){
-//         alert("Draw");
-//     }
-//     else{
-//         alert("the computer win");
-//     }
-// }
-// playGame();
-const contDiv       = document.createElement("div").setAttribute("container");
-const container     = document.querySelector("#container");
 
-const rock          = document.createElement("button").setAttribute("rock");
-rock.textContent    = "Rock";
-const paper         = document.createElement("button").setAttribute("paper");
-paper.textContent   = "Paper";
-const scissor       = document.createElement("button").setAttribute("scissor");
-scissor.textContent = "Scissor";
+function playGame(){
+    const container     = document.querySelector("#container");
+    const rock          = document.createElement("button");
+    const paper         = document.createElement("button");
+    const scissor       = document.createElement("button");
+    rock.textContent    = "Rock";
+    paper.textContent   = "Paper";
+    scissor.textContent = "Scissor";
+    container.appendChild(rock);
+    container.appendChild(paper);
+    container.appendChild(scissor);
 
-container.appendChild(rock);
-container.appendChild(paper);
-container.appendChild(scissor);
-
-container.addEventListener("click",(event) => {
-    const target = event.target;
-
-    switch(target.id){
-        case "rock":
-            event = playRound("rock",getComputerChoice);
-            break;
-        case "paper":
-            event = playRound("paper",getComputerChoice);
-            break;
-        case "scissor":
-            event = playRound("scissor",getComputerChoice);
-            break;
+    container.addEventListener("click",(event) => {
+        const target  = event.target;
+    
+        switch(target.id){
+            case "rock":
+                event = playRound("rock",getComputerChoice);
+                break;
+            case "paper":
+                event = playRound("paper",getComputerChoice);
+                break;
+            case "scissor":
+                event = playRound("scissor",getComputerChoice);
+                break;
+        }
+    });
+    const display =  document.createElement("div");
+    container.appendChild(display);
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+        console.log("humanscore: " + humanScore);
+        console.log("computerscore: " + computerScore);    
+    if(humanScore>computerScore){
+        alert("you win!!");
     }
-})
+    else if(humanScore === computerScore){
+        alert("Draw");
+    }
+    else{
+        alert("the computer win");
+    }
+}
+playGame();
