@@ -1,121 +1,86 @@
-// create a function called getComputerChoice
-// use  Math.random to give a nunber , either 0 or 1 or 2
-// if the nunber is 1 return rock
-// if the number is 2 return paper 
-// if the nunber is 3 return scissors 
-function  getComputerChoice() {
-    const Randomnum = Math.floor(Math.random()*3);
+let humanScore            = 0 ;
+let computerScore         = 0 ;
+const container           = document.createElement("div");
+document.body.appendChild(container);
+container.style.cssText   = " text-align : center;";
+const rock                = document.createElement("button");
+const paper               = document.createElement("button");
+const scissor             = document.createElement("button");
+const display             = document.createElement("div");
+const result              = document.createElement("div");
+const text                = document.createElement("div");
+const finalResult         = document.createElement("div");
+rock.textContent          = " Rock";
+paper.textContent         = " Paper";
+scissor.textContent       = " Scissor";
+text.textContent          = "let's play rock paper scissor";
+container.appendChild(text);
+container.appendChild(rock);
+container.appendChild(paper);
+container.appendChild(scissor);
+container.appendChild(display);
+container.appendChild(result);
+container.appendChild(finalResult);
+
+// na2sa l annoucement bl a5ir
+playGame();
+function playGame(){ 
+       rock.addEventListener("click",()=> playRound("rock",getComputerChoice()));
+       paper.addEventListener("click",()=>playRound("paper",getComputerChoice()));
+       scissor.addEventListener("click",()=> playRound("scissor",getComputerChoice()));  
+}  
+
+const  getComputerChoice =() => {
+    const Randomnum = Math.floor(Math.random()*3);  
     if (Randomnum==0) return "rock";
     else if (Randomnum==1)return "paper";
     else return "scissor";
-}
-// create a function called getHumanChoice
-// ask the user for input using prompt
-// the answer must be either rock , paper , scissors
-function getHumanChoice(){
-    const humanchoice = prompt("enter your choice :","rock or paper or scissor");
-    return humanchoice
-}
-let humanScore     = 0 ;
-let computerScore  = 0 ;
-// create a function called playRound
-// make it accept 2 parameters , one from human and one from computer
-// make the human one case insentive
-// compare the two parameters using this logic
-// rock > scissor || scissor > paper || paper > rock
-// according to that announce the winner
+}  
+
 function playRound(humanChoice, computerChoice) {
-    humanChoice = humanChoice.toLowerCase();
-    if(humanChoice === "rock"){
+    if (humanChoice === computerChoice) {
+        display.textContent       = `HumanScore : ${humanScore} \n ComputerScore : ${computerScore}`;
+        return result.textContent="Draw";
+    } 
+    else if(humanChoice === "rock"){
         if(computerChoice === "scissor") {
             humanScore++;
-         alert("you win , rock beat scissor");
-        }
-        else if (computerChoice === "rock") {
-             alert("Draw");
-        }
+            display.textContent       = `HumanScore : ${humanScore} \n ComputerScore : ${computerScore}`;
+           return result.textContent="you win , rock beat scissor";
+           
+        }     
         else{
             computerScore++;
-             alert("you lose , paper beat rock");
-        }
+            display.textContent       = `HumanScore : ${humanScore} \n ComputerScore : ${computerScore}`;
+            return result.textContent="you lose , paper beat rock";
+          }     
         
-    }
-    else  if(humanChoice === "paper"){
-        if(computerChoice === "rock") {
-            humanScore++;
-             alert("you win , paper beat rock");
-        }
-        else if (computerChoice === "paper") {
-             alert("Draw");
-        }
+        }    
+        else  if(humanChoice === "paper"){
+            if(computerChoice === "rock") {
+                humanScore++;
+                display.textContent       = `HumanScore : ${humanScore} \n ComputerScore : ${computerScore}`;
+                return result.textContent="you win , paper beat rock";
+            }     
+            else{
+                computerScore++;
+                display.textContent       = `HumanScore : ${humanScore} \n ComputerScore : ${computerScore}`;
+                return   result.textContent="you lose , scissor beat paper";
+            }     
+            
+        }    
         else{
-            computerScore++;
-             alert("you lose , scissor beat paper");
-        }
-        
-    }
-    else{
-        if(computerChoice === "papper") {
-            humanScore++;
-             alert("you win , scissor beat paper");
-        }
-        else if (computerChoice === "scissor") {
-             alert("Draw");
-        }
-        else{
-            computerScore++;
-             alert("you lose ,rock beat scissor");
-        }
-        
-    }
-  }
-// create a function called playgame
-// you have to repeat the playround function 5 times
-// you have to keep the score 
-// and finally annouce the winner
+            if(computerChoice === "papper") {
+                humanScore++;
+                display.textContent       = `HumanScore : ${humanScore} \n ComputerScore : ${computerScore}`;
+                return    result.textContent="you win , scissor beat paper";
+            }          
+            else{
+                computerScore++;
+                display.textContent       = `HumanScore : ${humanScore} \n ComputerScore : ${computerScore}`;
+                return    result.textContent="you lose ,rock beat scissor";
+            }     
+            
+        }    
+}  
 
-function playGame(){
-    const container     = document.querySelector("#container");
-    const rock          = document.createElement("button");
-    const paper         = document.createElement("button");
-    const scissor       = document.createElement("button");
-    rock.textContent    = "Rock";
-    paper.textContent   = "Paper";
-    scissor.textContent = "Scissor";
-    container.appendChild(rock);
-    container.appendChild(paper);
-    container.appendChild(scissor);
-
-    container.addEventListener("click",(event) => {
-        const target  = event.target;
-    
-        switch(target.id){
-            case "rock":
-                event = playRound("rock",getComputerChoice);
-                break;
-            case "paper":
-                event = playRound("paper",getComputerChoice);
-                break;
-            case "scissor":
-                event = playRound("scissor",getComputerChoice);
-                break;
-        }
-    });
-    const display =  document.createElement("div");
-    container.appendChild(display);
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-        console.log("humanscore: " + humanScore);
-        console.log("computerscore: " + computerScore);    
-    if(humanScore>computerScore){
-        alert("you win!!");
-    }
-    else if(humanScore === computerScore){
-        alert("Draw");
-    }
-    else{
-        alert("the computer win");
-    }
-}
-playGame();
